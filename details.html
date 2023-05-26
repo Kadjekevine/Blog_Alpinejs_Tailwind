@@ -8,6 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="src/assets/app.js"></script>
+
 </head>
 <body>
     <nav class="bg-white border-gray-200 dark:bg-gray-900 px-40">
@@ -33,27 +34,27 @@ URL: https://flowbite.com/docs/components/typography/
 -->
 
 <main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 " x-data="Posts()">
-    <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
+    <div class="flex justify-between px-4 mx-auto max-w-screen-xl" x-data="getPost()">
         <article class="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
             <header class="mb-4 lg:mb-6 not-format">
-                <span class="bg-blue-800 text-white text-xs font-medium px-6 py-2 rounded dark:bg-blue-900 dark:text-blue-300">Travel</span>
+                <span class="bg-blue-800 text-white text-xs font-medium px-6 py-2 rounded dark:bg-blue-900 dark:text-blue-300" x-text="post.tag"></span>
                 
-                <h4 class="text-3xl font-extrabold leading-tight text-gray-900 lg:text-4xl dark:text-white">What Traveling Greece For 2 Weeks Taught Me About Life</h4>
-                <p class="text-base font-light text-gray-500 dark:text-gray-400">Feb. 8, 2022</time></p>
+                <h4 class="text-3xl font-extrabold leading-tight text-gray-900 lg:text-4xl dark:text-white" x-text="post.title"></h4>
+                <p class="text-base font-light text-gray-500 dark:text-gray-400" x-text="post.date"></p>
             </header>
             <figure>
-                <img src="https://flowbite.s3.amazonaws.com/typography-plugin/typography-image-1.png" alt="">
+                <img :src="post.image" alt="">
                 <figcaption>
                     <div
                         class="flex-none mt-auto rounded-b rounded-t-none overflow-hidden m-2"
                         >
                         <div class="flex items-left">
                             <img
-                            src="https://randomuser.me/api/portraits/men/30.jpg"
+                            :src="post.user.profile"
                             class="w-8 h-8 rounded-full mr-4 avatar"
                             data-tippy-content="Author Name"
                             alt="Avatar of Author"
-                            /><b class="text-md text-bold">test</b>
+                            /><b class="text-md text-bold" x-text="post.user.username"></b>
                         </div>
                         </div>
                 </figcaption>
@@ -61,60 +62,22 @@ URL: https://flowbite.com/docs/components/typography/
 
             
 
-            <h2>Getting started with Flowbite</h2>
-            <p>First of all you need to understand how Flowbite works. This library is not another framework.
-                Rather, it is a set of components based on Tailwind CSS that you can just copy-paste from the
-                documentation.</p>
-
-                <br>
-                
-<ul class="space-y-4 text-gray-500 list-disc list-none dark:text-gray-400 my-2 p-3 bg-gray-200">
-    <li>
-        List item one
-        <ol class="pl-5 mt-2 space-y-1 list-decimal list-inside">
-            <li>You might feel like you are being really "organized" o</li>
-            <li>Nested navigation in UIs is a bad idea too, keep things as flat as possible.</li>
-            <li>Nesting tons of folders in your source code is also not helpful.</li>
-        </ol>
-    </li>
-</ul>
-<br>
-<p>Amet aliquet at a aliquam ac suspendisse euismod. Lectus sit in ut erat in. Et nulla a magna amet, amet. Sodales malesuada laoreet bibendum neque amet turpis non. Ac arcu lacus turpis elementum imperdiet. Euismod purus, libero scelerisque vitae, libero fermentum urna, nunc.
-</p>
-<br>
-
-
-            <p><b> It also includes a JavaScript file that enables interactive components </b></p>
-            <br>
-               <p> and datepickers which you can optionally include into your project via CDN or NPM.</p>
-            <p>You can check out the <a href="https://flowbite.com/docs/getting-started/quickstart/">quickstart
-                    guide</a> to explore the elements by including the CDN files into your project. But if you want
-                to build a project with Flowbite I recommend you to follow the build tools steps so that you can
-                purge and minify the generated CSS.</p>
-                <br>
-            <p>You'll also receive a lot of useful application UI, marketing UI, and e-commerce pages that can help
-                you get started with your projects even faster. You can check out this <a
-                    href="https://flowbite.com/docs/components/tables/">comparison table</a> to better understand
-                the differences between the open-source and pro version of Flowbite.</p>
-                <br>
-            <h2><b>Get the most out of your credit card reward points</b> </h2>
-            <br>
-            <p>Massa, libero morbi morbi sed non sed. In et neque lectus ultricies leo eros. Auctor in elementum accumsan malesuada gravida neque cursus pellentesque nunc. Dui nullam odio neque varius massa praesent. Neque, porta vel, morbi nulla at tincidunt. Neque, et ultrices duis fermentum, tincidunt sem sed. Erat accumsan dui enim nisl morbi feugiat.
-
-            </p>
-
-            <br>
-            <p>Massa, libero morbi morbi sed non sed. In et neque lectus ultricies leo eros. Auctor in elementum accumsan malesuada gravida neque cursus pellentesque nunc. Dui nullam odio neque varius massa praesent. Neque, porta vel, morbi nulla at tincidunt. Neque, et ultrices duis fermentum, tincidunt sem sed. Erat accumsan dui enim nisl morbi feugiat.
-                
-            </p>
-            <br>
             
-            <h2><b>Get the most out of your credit card reward points</b> </h2>
-            <br>
-            <p>Massa, libero morbi morbi sed non sed. In et neque lectus ultricies leo eros. Auctor in elementum accumsan malesuada gravida neque cursus pellentesque nunc. Dui nullam odio neque varius massa praesent. Neque, porta vel, morbi nulla at tincidunt. Neque, et ultrices duis fermentum, tincidunt sem sed. Erat accumsan dui enim nisl morbi feugiat.
+            <p x-text="post.description"></p>
 
-            </p>
-            <br>
+                <br>
+    <ul class="space-y-4 text-gray-500 list-disc list-none dark:text-gray-400 my-2 p-3 bg-gray-200">
+        <li>
+            Sommary
+            <ol class="pl-5 mt-2 space-y-1 list-decimal list-inside" x-for="(item, index) in post.sommary" :key="index">
+                <template x-for="(item, index) in post.sommary" :key="index">
+                    <li x-text="item.title"></li>
+                </template>
+            </ol>
+        </li>
+    </ul>
+<br>
+<p x-text="post.content"></p>
             <br>
             <h1 class="text-xl -mt-7 font-bold">Keep reading</h1>
         </article>

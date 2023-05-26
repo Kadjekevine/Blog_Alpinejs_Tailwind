@@ -1,37 +1,32 @@
 function Posts(){
     return {
-        posts: [
-          {
-    
-            "title": "What Traveling Greece For 2 Weeks Taught Me About Life",
-            "date": "Jun 21, 2021 • 11 min read",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Diam mollis lectus vitae nulla malesuada amet purus sed. A condimentum tempus a egestas sodales diam cras.",
-            "image": "https://source.unsplash.com/collection/225/800x600",
-            "tag": "Travel",
-            "user":{
-                "username":"George Costanza",
-                "profile": "https://randomuser.me/api/portraits/men/30.jpg"
-            },
-            "id": 1
-          },
-          {
-    
-            "title": "Why You Should Never Order 12 Chicken Nuggets and Fries",
-            "date": "Aug 1, 2021 • 7 min read",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Diam mollis lectus vitae nulla malesuada amet purus sed. A condimentum tempus a egestas sodales diam cras.",
-            "image": "https://source.unsplash.com/collection/898/800x600",
-            "tag": "Food Theory",
-            "user":{
-                "username":"George Costanza",
-                "profile": "https://randomuser.me/api/portraits/men/30.jpg"
-            },
-            "id": 2
+      post: {},
+      getPosts: async function getPosts() {
+        let response = await fetch('./db.json')
 
-          },
+        const jsonData = await response.json();
+
+        this.post = jsonData.posts.find(post => post.id === this.currentPostId)
+        
+        
+        return jsonData.posts;
+
       
+      },
+      getPost: async function getPost() {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
 
-        ],
-        otherposts:[
+        const id = urlParams.get('id')
+        let response = await fetch('./db.json')
+
+        const jsonData = await response.json();
+        this.post = jsonData.posts.find(post => post.id === parseInt(id));
+
+        console.table(this.post.sommary);
+      
+      }, 
+       otherposts:[
           {
             "img": "https://source.unsplash.com/collection/205/800x600",
             "title": "Why you don't need more than 3 pieces of clothing",
@@ -54,30 +49,3 @@ function Posts(){
 
     }
 }
-const getPosts = ()=>({
-  url:"./db.json",
-  Posts: [],
-  post: {},
-  init(){
-    this.getData()
-    //wach
-
-    this.$watch('post',(newValue, oldValue) =>{
-      console.log(newValue, oldValue)
-      if(newValue.length > 0){
-        this.required = false
-      }
-    })
-  },
-  getData(){
-    this,isLoading = true
-
-    //backend com fetchs
-    fetch(this.url)
-    .then(response => response.json())
-    .then(data => {
-      this.posts = data
-      this.isLoading= false
-    })
-  },
-})
